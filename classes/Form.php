@@ -11,11 +11,12 @@ class Form
         $html = '<form ';
         $html .= 'method="' . $this->method .'" ';
         $html .= 'action="' . $this->url . '"';
-        if (!$this->uploadFile) {
+        if ($this->uploadFile) {
             $html .= ' enctype="multipart/form-data"';
         }
         $html .= '>';
 
+        $html .= "</form>";
         return $html;
     }
 }
