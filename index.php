@@ -1,8 +1,11 @@
 <?php
+require_once './functions/classAutoLoader.php';
+spl_autoload_register('classAutoLoader');
 
-require_once './classes/Vehicule.php';
-require_once './classes/Voiture.php';
-require_once './classes/Coupe.php';
+
+$chat = new Mammifere();
+var_dump($chat);
+
 
 $toto = new Coupe("Peugeot", "504", "vert", [2000, 1000, 1000], 1200);
 var_dump($toto);
