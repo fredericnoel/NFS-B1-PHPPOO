@@ -2,7 +2,7 @@
 
 class Voiture
 {
-    public $marque;
+    private $marque;
     public $modele;
     public $couleur;
     public $dimensions = [0, 0, 0];
@@ -18,5 +18,18 @@ class Voiture
         $this->masse = $mas;
     }
 
+    public function getMarque()
+    {
+        return $this->marque;
+    }
 
+    public function setMarque($m) : void
+    {
+        $this->marque = $m;
+    }
+
+    public function calculerEnergieCinetique() : float
+    {
+        return 0.5 * $this->masse * $this->vitesse ** 2;
+    }
 }
