@@ -18,7 +18,8 @@ class Form
         var_dump($this->iniFile);
     }
 
-    public function beginHtml($titre) : string {
+    public function beginHtml($titre): string
+    {
         $html = '<!DOCTYPE html>';
         $html .= '<head>';
         $html .= '<meta charset="utf-8" />';
@@ -31,7 +32,8 @@ class Form
         return $html;
     }
 
-    public function endHtml() : string {
+    public function endHtml(): string
+    {
         $html = '</body>';
         $html .= '</html>';
         return $html;
@@ -51,25 +53,32 @@ class Form
             $typeBalise = explode(":", $key);
 
             if ($typeBalise[0] === "input") {
-                if ($this->iniFile[$key]['labelContent'] !== false) {
+                if (isset($this->iniFile[$key]['labelContent'])) {
                     $html .= '<div>';
                     $html .= '<label for="' .
                         $typeBalise[1] . '">' .
                         ucfirst($typeBalise[1]) . " " .
                         '</label>';
                 }
-                $html .= '<input type="' .
-                    $this->iniFile[$key]['type'] . '" ' .
-                    'id="' . $typeBalise[1] . '" ' .
-                    'name="' . $typeBalise[1] . '" ' .
-                    'placeholder="Veuillez saisir votre ' . $typeBalise[1] . '"' .
-                    ' />';
-                $html .= '</div>';
+
+                if ($this->iniFile[$key]['type'] === 'submit' || $this->iniFile[$key]['type'] === 'reset') {
+                    $html .= '<input type="' . $this->iniFile[$key]['type'] . '" ' .
+                            'value="' . $this->iniFile[$key]['value'] . '" />';
+                }
+
+                else {
 
 
+                    $html .= '<input type="' .
+                        $this->iniFile[$key]['type'] . '" ' .
+                        'id="' . $typeBalise[1] . '" ' .
+                        'name="' . $typeBalise[1] . '" ' .
+                        'placeholder="Veuillez saisir votre ' . $typeBalise[1] . '"' .
+                        ' />';
+
+                    $html .= '</div>';
+                }
             }
-
-
         }
 
         $html .= "</form>";
