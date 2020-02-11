@@ -13,6 +13,8 @@ class Form
         $this->iniFile = parse_ini_file("./conf/$file.ini", true);
     }
 
+
+
     public function wesh() // Provisoire
     {
         var_dump($this->iniFile);
